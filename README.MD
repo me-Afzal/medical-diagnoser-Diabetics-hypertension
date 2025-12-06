@@ -20,6 +20,8 @@ This tool reduces diagnostic time, minimizes human error, and provides instant p
 
 ---
 
+## APP Link: [Click Here](https://medical-diagnoser-diabetics-hypertension.streamlit.app/)
+
 ## ✨ Features
 
 ### 🔍 Intelligent Data Extraction
