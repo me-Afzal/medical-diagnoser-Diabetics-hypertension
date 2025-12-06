@@ -4,13 +4,13 @@ import pickle
 
 
 # Load ML Models
-diabetes_model = pickle.load(open("models/diabetic_rf_model.pkl", "rb"))
-diabetes_scaler = pickle.load(open("models/diabetic_scaler.pkl", "rb"))
+diabetes_model = pickle.load(open("app/models/diabetic_rf_model.pkl", "rb"))
+diabetes_scaler = pickle.load(open("app/models/diabetic_scaler.pkl", "rb"))
 
-hyper_model = pickle.load(open("models/hypertension_xgb_model.pkl", "rb"))
-hyper_scaler = pickle.load(open("models/hypertension_scaler.pkl", "rb"))
-o_encoder_bp = pickle.load(open("models/hypertension_o_encoder_bp.pkl", "rb"))
-o_encoder_exercise = pickle.load(open("models/hypertension_o_encoder_exercise.pkl", "rb"))
+hyper_model = pickle.load(open("app/models/hypertension_xgb_model.pkl", "rb"))
+hyper_scaler = pickle.load(open("app/models/hypertension_scaler.pkl", "rb"))
+o_encoder_bp = pickle.load(open("app/models/hypertension_o_encoder_bp.pkl", "rb"))
+o_encoder_exercise = pickle.load(open("app/models/hypertension_o_encoder_exercise.pkl", "rb"))
 
 
 def predict_diabetes(data_dict):

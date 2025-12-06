@@ -87,15 +87,15 @@ with tabs[0]:
         manual["AGE"] = st.number_input("Age", 1, 100, 30, key="diabetes_age")
 
         cols = st.columns(3)
-        with cols[0]: manual["Urea"] = st.number_input("Urea (mmol/L)", 0.0, 30.0)
-        with cols[1]: manual["Cr"] = st.number_input("Creatinine", 0.0, 300.0)
-        with cols[2]: manual["HbA1c"] = st.number_input("HbA1c", 0.0, 18.0)
-        with cols[0]: manual["Chol"] = st.number_input("Chol", 0.0, 20.0)
-        with cols[1]: manual["TG"] = st.number_input("TG", 0.0, 20.0)
-        with cols[2]: manual["HDL"] = st.number_input("HDL", 0.0, 20.0)
-        with cols[0]: manual["LDL"] = st.number_input("LDL", 0.0, 20.0)
-        with cols[1]: manual["VLDL"] = st.number_input("VLDL", 0.0, 20.0)
-        with cols[2]: manual["BMI"] = st.number_input("BMI", 0.0, 60.0)
+        with cols[0]: manual["Urea"] = st.number_input("Urea (mmol/L)", 0.0, 30.0, key="dia_urea")
+        with cols[1]: manual["Cr"] = st.number_input("Creatinine (µmol/L)", 0.0, 300.0, key="dia_cr")
+        with cols[2]: manual["HbA1c"] = st.number_input("HbA1c (mmol/L)", 0.0, 18.0, key="dia_hba1c")
+        with cols[0]: manual["Chol"] = st.number_input("Chol (mmol/L)", 0.0, 20.0, key="dia_chol")
+        with cols[1]: manual["TG"] = st.number_input("TG (mmol/L)", 0.0, 20.0, key="dia_tg")
+        with cols[2]: manual["HDL"] = st.number_input("HDL (mmol/L)", 0.0, 20.0, key="dia_hdl")
+        with cols[0]: manual["LDL"] = st.number_input("LDL (mmol/L)", 0.0, 20.0, key="dia_ldl")
+        with cols[1]: manual["VLDL"] = st.number_input("VLDL (mmol/L)", 0.0, 20.0, key="dia_vldl")
+        with cols[2]: manual["BMI"] = st.number_input("BMI", 0.0, 60.0, key="dia_bmi")
 
         if st.button("Predict"):
             result = predict_diabetes(manual)
@@ -151,11 +151,11 @@ with tabs[1]:
 
     else:
         manual = {}
-        manual["Age"] = st.number_input("Age", 1, 100, 30, key="hyper_age")
-        manual["Salt_Intake"] = st.number_input("Salt Intake (grams/day)", 0.0, 50.0)
-        manual["Stress_Score"] = st.slider("Stress Score (0–10)", 0, 10, 5)
-        manual["Sleep_Duration"] = st.number_input("Sleep Duration (hours)", 0.0, 24.0)
-        manual["BMI"] = st.number_input("BMI", 0.0, 60.0)
+        manual["Age"] = st.number_input("Age", 1, 100, 30, key="hyp_age")
+        manual["Salt_Intake"] = st.number_input("Salt Intake (grams/day)", 0.0, 50.0, key="hyp_salt")
+        manual["Stress_Score"] = st.slider("Stress Score (0–10)", 0, 10, 5, key="hyp_stress")
+        manual["Sleep_Duration"] = st.number_input("Sleep Duration (hours)", 0.0, 24.0, key="hyp_sleep")
+        manual["BMI"] = st.number_input("BMI", 0.0, 60.0, key="hyp_bmi")
 
         manual["BP_History"] = st.selectbox("Blood Pressure History", ["Normal", "Prehypertension", "Hypertension"])
         manual["Medication"] = st.selectbox("Medication", ["No", "ACE Inhibitor", "Others"])
