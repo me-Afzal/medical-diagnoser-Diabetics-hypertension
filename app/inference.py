@@ -17,9 +17,15 @@ def predict_diabetes(data_dict):
     num_cols = ["Urea", "Cr", "HbA1c", "Chol", "TG", "HDL", "LDL", "VLDL", "BMI"]
     cat_cols = ["Gender", "Age_Grp"]
 
+    # ---------- Check missing required numeric features ----------
+    required_features = num_cols  # same list
+    missing = [f for f in required_features if f not in data_dict or data_dict[f] is None or str(data_dict[f]).strip() == ""]
+    if missing:
+        return f"Not enough details, missing fields: {', '.join(missing)}"
+
     df = pd.DataFrame([data_dict])
-    df["AGE"] = df["AGE"].fillna(22)
-    df["Gender"] = df["Gender"].fillna(0)
+    df["AGE"] = df["AGE"].fillna(22) if "AGE" in df else 22
+    df["Gender"] = df["Gender"].fillna(0) if "Gender" in df else 0
 
     # Age grouping
     def age_group(age):
@@ -38,15 +44,21 @@ def predict_diabetes(data_dict):
 
 
 def predict_hyper(data):
+    # ---- Required features check ----
+    required_features = ['Salt_Intake', 'BMI', 'BP_History']
+    missing = [f for f in required_features if f not in data or data[f] is None or str(data[f]).strip() == ""]
+    if missing:
+        return f"Not enough details, missing fields: {', '.join(missing)}"
+
     df = pd.DataFrame([data])
 
-    df["Age"] = df["Age"].fillna(22)
-    df["Stress_Score"] = df["Stress_Score"].fillna(5)
-    df["Sleep_Duration"] = df["Sleep_Duration"].fillna(6)
-    df["Medication"] = df["Medication"].fillna("No")
-    df["Exercise_Level"] = df["Exercise_Level"].fillna("Moderate")
-    df["Smoking_Status"] = df["Smoking_Status"].fillna("Non-Smoker")
-    df["Family_History"] = df["Family_History"].fillna("No")
+    df["Age"] = df["Age"].fillna(22) if "Age" in df else 22
+    df["Stress_Score"] = df["Stress_Score"].fillna(5) if "Stress_Score" in df else 5
+    df["Sleep_Duration"] = df["Sleep_Duration"].fillna(6) if "Sleep_Duration" in df else 6
+    df["Medication"] = df["Medication"].fillna("No") if "Medication" in df else "No"
+    df["Exercise_Level"] = df["Exercise_Level"].fillna("Moderate") if "Exercise_Level" in df else "Moderate"
+    df["Smoking_Status"] = df["Smoking_Status"].fillna("Non-Smoker") if "Smoking_Status" in df else "Non-Smoker"
+    df["Family_History"] = df["Family_History"].fillna("No") if "Family_History" in df else "No"
 
     df["Medication"] = df["Medication"].apply(lambda x: 0 if x == "No" else 1)
     df["BP_History"] = o_encoder_bp.transform(df[["BP_History"]]).astype(int)
